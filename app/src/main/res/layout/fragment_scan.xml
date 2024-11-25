@@ -1,0 +1,82 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_welcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_scan"
+    tools:context=".view.ui.scan.ScanFragment">
+
+    <LinearLayout
+        android:id="@+id/center_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/scan_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text="@string/title_scan"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/description_text"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/description_scan"
+            android:textColor="#B3B3B3"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/uploaded_image_preview"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="24dp"
+            android:contentDescription="@string/scan_picture_placeholder"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/upload"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#4A90E2"
+                android:text="@string/upload"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/analyze"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#4A90E2"
+                android:text="@string/analyze"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

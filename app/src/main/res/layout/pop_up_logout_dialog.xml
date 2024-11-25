@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text="@string/logout"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="@string/logout_confirm"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins"
+                android:text="@string/cancel"
+                android:textColor="@color/primaryColor"
+                android:textSize="14sp"
+                app:strokeColor="@color/primaryColor"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/ya"
+                android:textSize="14sp"
+                app:strokeColor="@color/primaryColor"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

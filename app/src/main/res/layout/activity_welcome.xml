@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_welcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_image"
+    tools:context=".view.ui.welcome.WelcomeActivity">
+
+    <TextView
+        android:id="@+id/welcome_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/welcome_msg"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/welcome_logo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/logo"
+        app:layout_constraintStart_toStartOf="@id/welcome_msg"
+        app:layout_constraintTop_toBottomOf="@id/welcome_msg" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/welcome_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearance="@style/ShapeAppearance.custom.corner">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/motto"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/welcome_text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:maxLines="2"
+                android:text="@string/desc_welcome"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_welcome" />
+
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/primaryColor"
+                android:fontFamily="@font/poppins"
+                android:text="@string/button_account"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/welcome_text_description"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:color/transparent"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins"
+                android:text="@string/have_account"
+                android:textAllCaps="false"
+                android:textColor="@color/primaryColor"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/registerButton" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
