@@ -1,6 +1,7 @@
 package com.example.daisyapp.view.ui.profile
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,11 +13,31 @@ import android.view.ViewGroup
 import com.example.daisyapp.databinding.FragmentProfileBinding
 import android.provider.Settings
 import android.widget.Button
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.example.daisyapp.R
+import com.example.daisyapp.view.viewmodel.factory.AuthViewModelFactory
+import com.example.daisyapp.view.viewmodel.model.LoginViewModel
+import com.example.daisyapp.view.viewmodel.model.MainViewModel
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel by viewModels<MainViewModel> {
+        AuthViewModelFactory.getInstance(requireContext())
+    }
+
+    private val nameviewModel by viewModels<LoginViewModel> {
+        AuthViewModelFactory.getInstance(requireContext())
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +49,8 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        displayProfile()
 
         binding.profileCardAbout.setOnClickListener{
             showPopupAbout()
@@ -49,6 +72,34 @@ class ProfileFragment : Fragment() {
             showPopupLogout()
         }
     }
+
+    private fun loadUsername(): String? {
+        val sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("username", null)
+    }
+
+    private fun loadEmail(): String? {
+        val sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("email", null)
+    }
+
+    private fun displayProfile() {
+        val username = loadUsername()
+        val email = loadEmail()
+
+        if (username != null) {
+            binding.nameProfile.text = username
+        } else {
+            binding.nameProfile.text = getString(R.string.username_not_found)
+        }
+
+        if (email != null) {
+            binding.emailProfile.text = email
+        } else {
+            binding.emailProfile.text = getString(R.string.email_not_found)
+        }
+    }
+
 
     private fun showPopupAbout() {
         val dialog = Dialog(requireContext())
@@ -78,6 +129,7 @@ class ProfileFragment : Fragment() {
         }
 
         btnLogout.setOnClickListener {
+            viewModel.logout()
             dialog.dismiss()
         }
 

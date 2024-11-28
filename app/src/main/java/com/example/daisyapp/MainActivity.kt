@@ -1,66 +1,112 @@
 package com.example.daisyapp
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.daisyapp.R
+import com.example.daisyapp.databinding.ActivityMainBinding
 import com.example.daisyapp.view.ui.home.HomeFragment
 import com.example.daisyapp.view.ui.profile.ProfileFragment
 import com.example.daisyapp.view.ui.scan.ScanFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.daisyapp.view.ui.welcome.WelcomeActivity
+import com.example.daisyapp.view.viewmodel.factory.AuthViewModelFactory
+import com.example.daisyapp.view.viewmodel.model.MainViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    // ViewModel untuk session check
+    private val viewModel by viewModels<MainViewModel> {
+        AuthViewModelFactory.getInstance(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        // Mengaktifkan edge-to-edge UI
+        enableEdgeToEdge()
 
-        // Set default fragment to HomeFragment
-        openFragment(HomeFragment())
+        // Inflate layout menggunakan ViewBinding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Set up BottomNavigationView
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigate_menu)
-        bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.action_home -> {
-                    openFragment(HomeFragment())
-                    true
-                }
-
-                R.id.action_scan -> {
-                    openFragment(ScanFragment())
-                    true
-                }
-
-                R.id.action_history -> {
-//                    openFragment(HistoryFragment())
-                    true
-                }
-
-                R.id.action_profile -> {
-                    openFragment(ProfileFragment())
-                    true
-                }
-
-                else -> false
+        // Periksa session login
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
             }
         }
 
-        // Handle WindowInsets
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.container)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        // Setup tampilan layar dan fragment default
+        setupView()
+        switchFragment(HomeFragment())
+
+        // Penanganan navigasi jika ada data tambahan dari intent
+        handleIntentNavigation()
+
+        // Setup navigasi BottomNavigationView
+        binding.navigateMenu.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_home -> switchFragment(HomeFragment())
+//                R.id.action_history -> switchFragment(HistoryFragment())
+                R.id.action_scan -> switchFragment(ScanFragment())
+//                R.id.action_article -> switchFragment(ArticleFragment())
+                R.id.action_profile -> switchFragment(ProfileFragment())
+                else -> false
+            }
+            true
         }
     }
 
-    // Function to replace the fragment
-    private fun openFragment(fragment: Fragment) {
+    // Fungsi untuk mengganti fragment
+    private fun switchFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container_fragment, fragment) // ID dari FrameLayout
+            .replace(R.id.container_fragment, fragment)
             .commit()
+    }
+
+    // Setup tampilan layar penuh
+    private fun setupView() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+    }
+
+    // Penanganan navigasi dari intent
+    private fun handleIntentNavigation() {
+        val fromArticle = intent.getBooleanExtra("navigateToArticle", false)
+        val fromHistory = intent.getBooleanExtra("navigateToHistory", false)
+        val fromScan = intent.getBooleanExtra("navigateToScan", false)
+
+        when {
+//            fromArticle -> navigateToFragment(ArticleFragment(), R.id.action_article)
+//            fromHistory -> navigateToFragment(HistoryFragment(), R.id.action_history)
+            fromScan -> navigateToFragment(ScanFragment(), R.id.action_scan)
+        }
+    }
+
+    // Navigasi langsung ke fragment tertentu
+    private fun navigateToFragment(fragment: Fragment, menuItemId: Int) {
+        switchFragment(fragment)
+        setSelectedItem(menuItemId)
+    }
+
+    // Set item terpilih di BottomNavigationView
+    private fun setSelectedItem(itemId: Int) {
+        binding.navigateMenu.selectedItemId = itemId
     }
 }

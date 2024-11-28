@@ -5,4 +5,5 @@
     <color name="primaryColor">#5271FF</color>
     <color name="placeholder">#888888</color>
     <color name="background_grey">#DFDAFF</color>
+    <color name="succes">#00D83A</color>
 </resources>

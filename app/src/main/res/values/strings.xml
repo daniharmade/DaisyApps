@@ -81,6 +81,10 @@
     <string name="desc_upload_image">Use Camera Or Gallery to \nPick Image</string>
     <string name="Gallery">Gallery</string>
     <string name="Camera">Camera</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_pw_mismatch">Passwords do not match</string>
+    <string name="congrats">Congratulations</string>
+    <string name="message_succes_activation">Account has been registered \n Check Your Email to Activate Your Account</string>
+    <string name="lets_started_message">Let\'s Get Started</string>
+    <string name="username_not_found">Username Not Found</string>
+    <string name="email_not_found">Email Not Found</string>
 </resources>
