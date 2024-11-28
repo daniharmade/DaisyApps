@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.daisyapp.R
 import com.example.daisyapp.databinding.ActivityMainBinding
+import com.example.daisyapp.view.ui.history.HistoryFragment
 import com.example.daisyapp.view.ui.home.HomeFragment
 import com.example.daisyapp.view.ui.profile.ProfileFragment
 import com.example.daisyapp.view.ui.scan.ScanFragment
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         binding.navigateMenu.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_home -> switchFragment(HomeFragment())
-//                R.id.action_history -> switchFragment(HistoryFragment())
+                R.id.action_history -> switchFragment(HistoryFragment())
                 R.id.action_scan -> switchFragment(ScanFragment())
 //                R.id.action_article -> switchFragment(ArticleFragment())
                 R.id.action_profile -> switchFragment(ProfileFragment())

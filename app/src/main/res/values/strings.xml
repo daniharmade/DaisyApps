@@ -87,4 +87,8 @@
     <string name="lets_started_message">Let\'s Get Started</string>
     <string name="username_not_found">Username Not Found</string>
     <string name="email_not_found">Email Not Found</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_history">Diagnosis History</string>
+    <string name="description_history">\"DAISY keeps a record of your diagnosis history, helping you track your skin’s condition. While it offers quick assessments, we recommend seeing a dermatologist for a more accurate diagnosis and proper treatment, especially for persistent or severe issues."</string>
 </resources>
