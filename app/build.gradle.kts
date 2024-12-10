@@ -15,13 +15,15 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField ("String", "AUTH_URL", "\"https://asia-southeast2-inbound-decker-441613-s6.cloudfunctions.net/app/api/\"")
+//        buildConfigField ("String", "AUTH_URL", "\"https://asia-southeast2-inbound-decker-441613-s6.cloudfunctions.net/app/api/\"")
+        buildConfigField ("String", "AUTH_URL", "\"https://story-api.dicoding.dev/v1/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        mlModelBinding = true
     }
 
     buildTypes {
@@ -52,6 +54,22 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // TODO: Tambahkan Library TensorFlow Lite
+//    implementation("org.tensorflow:tensorflow-lite:2.10.0")
+//    implementation("org.tensorflow:tensorflow-lite-task-vision:2.10.0")
+//    implementation("org.tensorflow:tensorflow-lite-support:2.10.0")
+//    implementation("org.tensorflow:tensorflow-lite-task-core:2.10.0")
+    implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
+
+    // ucrop for cropping or rotate image
+    implementation("com.github.yalantis:ucrop:2.2.8")
+
+    // Coil - library that provide function extension for load image from internet
+    implementation("io.coil-kt:coil:2.6.0")
+    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
+
     // Fragment
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -66,6 +84,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
+    // Room
     implementation("androidx.room:room-ktx:2.5.2")
     implementation("androidx.room:room-runtime:2.5.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")

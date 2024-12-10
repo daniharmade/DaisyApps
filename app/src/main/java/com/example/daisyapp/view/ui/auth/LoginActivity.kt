@@ -1,22 +1,22 @@
 package com.example.daisyapp.view.ui.auth
 
 import android.app.AlertDialog
-import android.app.ProgressDialog.show
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.daisyapp.MainActivity
 import com.example.daisyapp.data.model.UserModel
+import com.example.daisyapp.data.preference.Result
 import com.example.daisyapp.databinding.ActivityLoginBinding
 import com.example.daisyapp.view.viewmodel.factory.AuthViewModelFactory
 import com.example.daisyapp.view.viewmodel.model.LoginViewModel
-import com.example.daisyapp.data.preference.Result
 
 class LoginActivity : AppCompatActivity() {
 
@@ -51,9 +51,14 @@ class LoginActivity : AppCompatActivity() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Email and Password cannot be empty", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         viewModel.login(email, password)
-        viewModel.loginResult.observe(this){result ->
-            when(result){
+        viewModel.loginResult.observe(this) { result ->
+            when (result) {
                 is Result.DataLoading -> {
                     showLoading(true)
                 }
@@ -62,41 +67,21 @@ class LoginActivity : AppCompatActivity() {
                     val name = result.data.loginResult.name
                     val token = result.data.loginResult.token
                     val image = result.data.loginResult.photoURL
-//                    viewModel.saveSession(UserModel(email, token, image))
+                    // Save session information
                     viewModel.saveSession(UserModel(email, token))
                     saveUserInfo(name, email, image)
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("$name Sudah Berhasil Login Nih. Yuk, login dan jaga kesehatan kulitmu.")
-                        setPositiveButton("Lanjut") { _, _ ->
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                            finish()
-                        }
-                        create()
-                        show()
-                    }
+                    // Directly navigate to MainActivity without showing a dialog
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
                 }
-
                 is Result.DataError -> {
                     showLoading(false)
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Ups!")
-                        setMessage("Login Gagal, Harap Periksa Kembali Email dan Password Anda.")
-                        setNeutralButton("Kembali") { _, _ ->
-                            val intent = Intent(this@LoginActivity, LoginActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                            showLoading(false)
-                            finish()
-                        }
-                        create()
-                        show()
-                    }
+                    // Show a toast instead of the dialog for login failure
+                    Toast.makeText(this, "Login failed, please check your email and password again.", Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
     }
 
