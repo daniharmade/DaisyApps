@@ -15,8 +15,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-//        buildConfigField ("String", "AUTH_URL", "\"https://asia-southeast2-inbound-decker-441613-s6.cloudfunctions.net/app/api/\"")
-        buildConfigField ("String", "AUTH_URL", "\"https://story-api.dicoding.dev/v1/\"")
+        buildConfigField ("String", "AUTH_URL", "\"https://asia-southeast2-inbound-decker-441613-s6.cloudfunctions.net/app/api/\"")
+//        buildConfigField ("String", "AUTH_URL", "\"https://story-api.dicoding.dev/v1/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -54,11 +54,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // TODO: Tambahkan Library TensorFlow Lite
-//    implementation("org.tensorflow:tensorflow-lite:2.10.0")
-//    implementation("org.tensorflow:tensorflow-lite-task-vision:2.10.0")
-//    implementation("org.tensorflow:tensorflow-lite-support:2.10.0")
-//    implementation("org.tensorflow:tensorflow-lite-task-core:2.10.0")
     implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
     implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
 

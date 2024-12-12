@@ -96,4 +96,23 @@
     <string name="cancer_history_label">Prediction: %s</string>
     <string name="normal_prediction_message">You are healthy. Keep it up!</string>
     <string name="see_doctor_immediately">See a doctor immediately!</string>
+    <string name="nama_obat_cacarair">Calamine (Bedak/Lotion)</string>
+    <string name="cara_pemakaian_obat_cacarair">Oleskan tipis pada area kulit yang teriritasi 2-3 kali sehari</string>
+    <string name="catatan_obat_cacarair">Kompres dingin untuk meredakan gatal dan hindari menggaruk lesi kulit.</string>
+    <string name="nama_obat_biduran">Chlorphenamine Maleate (Kapsul)</string>
+    <string name="cara_pemakaian_obat_biduran">Minum 1 kapsul 1-2 kali sehari setelah makan sesuai dosis yang dianjurkan.</string>
+    <string name="catatan_obat_biduran">Hindari alergen yang memicu biduran dan gunakan pakaian berbahan lembut.</string>
+    <string name="nama_obat_bisul">Salep Hitam Ichtyol</string>
+    <string name="cara_pemakaian_obat_bisul">Oleskan 1-3 kali sehari pada kulit yang terkena bisul.</string>
+    <string name="catatan_obat_bisul">Kompres dengan kain bersih yang sudah direndam air hangat, hindari memecahkan bisul secara paksa.</string>
+    <string name="nama_obat_jerawat">Benzoyl Peroxide</string>
+    <string name="cara_pemakaian_obat_jerawat">Oleskan tipis 1-2 kali sehari pada area yang berjerawat.</string>
+    <string name="catatan_obat_jerawat">Cuci wajah dengan sabun ringan 2x sehari dan hindari penggunaan produk berminyak.</string>
+    <string name="nama_obat_kurap">Tolnaftate Cream</string>
+    <string name="cara_pemakaian_obat_kurap">Oleskan tipis-tipis pada area kulit yang terinfeksi 2× sehari setelah dibersihkan dan dikeringkan.</string>
+    <string name="catatan_obat_kurap">Hindari pakaian ketat dan jaga area yang terinfeksi tetap kering.</string>
+    <string name="nama_obat_panu">Selenium Sulfida Lotion</string>
+    <string name="cara_pemakaian_obat_panu">Oleskan dan biarkan 10-15 menit, bilas dengan air hangat 2-3 kali seminggu.</string>
+    <string name="catatan_obat_panu">Jaga kulit tetap kering dan hindari berbagi handuk dengan orang lain.</string>
+    <string name="normal">Kulit Anda dalam kondisi sehat. Jaga kebersihan kulit dengan rutin mandi dan gunakan pelembap yang sesuai dengan jenis kulit Anda.</string>
 </resources>
