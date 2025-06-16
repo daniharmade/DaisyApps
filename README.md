@@ -1,6 +1,6 @@
 # 🌼 DAISY - Dermatological AI System for Your Skin
 
-![DAISY Banner](./daisy (1).png)
+![DAISY Banner](daisy.png)
 
 **DAISY** is an AI-powered dermatological diagnostic system designed to help users quickly and confidently identify skin conditions such as *tinea versicolor* (panu) and *ringworm* through mobile image analysis.
 
